@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Mani Bhargavi Ketha-->
+<!--W1186016-->
+<!--Due June 4,2016-->
+<!--COEN 280-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<xs:include schemaLocation="Buildings.xsd"></xs:include>
+    
+    	<xs:element name="Type">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Master" />
+				<xs:enumeration value="Phd" />
+				<xs:enumeration value="Both" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="SSN">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}"></xs:pattern>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+    <xs:element name="Phone">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="\d{3}\-[0-9|\-]{7,11}"></xs:pattern>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+    
+    <xs:element name="Gender">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="M" />
+				<xs:enumeration value="F" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+    
+	<xs:element name="DOB">
+		<xs:simpleType>
+			<xs:restriction base="xs:date">
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+
+
+	
+
+
+	<xs:element name="Student">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SSN">
+				</xs:element>
+				<xs:element name="Name" type="xs:string" />
+				<xs:element ref="DOB" />
+				<xs:element ref="Gender" />
+				<xs:element ref="Type" />
+				<xs:element ref="BuildingCode" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="Phone" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Students">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Student" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+</xs:schema>
